@@ -1,6 +1,6 @@
 import { Schema, model, Document, Types } from "mongoose";
 
-export type BookingStatus = "pending" | "confirmed" | "declined" | "completed" | "cancelled";
+export type BookingStatus = "pending" | "confirmed" | "paid" | "declined" | "completed" | "cancelled";
 
 export interface IBooking extends Document {
   tour: Types.ObjectId;
@@ -24,7 +24,7 @@ const bookingSchema = new Schema<IBooking>(
     date: { type: Date, required: true },
     numGuests: { type: Number, required: true },
 
-    status: { type: String, enum: ["pending", "confirmed", "declined", "completed", "cancelled"], default: "pending" },
+    status: { type: String, enum: ["pending", "confirmed", "paid", "declined", "completed", "cancelled"], default: "pending" },
   },
   { timestamps: true }
 );
