@@ -1,6 +1,7 @@
 import { Router } from "express";
 import * as PaymentController from "./payment.controller";
 import { protect } from "../../middlewares/auth.middleware";
+import { verifyPaidBooking } from "../../middlewares/payment.middleware";
 
 const router = Router();
 
@@ -9,5 +10,12 @@ router.post("/checkout", protect(["tourist"]), PaymentController.createCheckoutS
 
 // Stripe webhook (raw body required)
 router.post("/webhook", PaymentController.stripeWebhook);
+router.post(
+  "/checkout",
+  protect(["tourist"]),
+  PaymentController.createCheckoutSession
+);
 
+// Stripe webhook (NO auth)
+router.post("/webhook", PaymentController.stripeWebhook);
 export default router;

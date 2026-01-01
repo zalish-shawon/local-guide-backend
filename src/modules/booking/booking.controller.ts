@@ -26,3 +26,12 @@ export const updateBookingStatus = async (req: any, res: Response) => {
   const booking = await BookingService.updateBookingStatus(req.params.bookingId, req.user.id, status);
   res.json(booking);
 };
+
+export const completeBooking = async (req: any, res: Response) => {
+  const booking = req.booking;
+
+  booking.status = "completed";
+  await booking.save();
+
+  res.json({ message: "Tour marked as completed", booking });
+};

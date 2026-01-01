@@ -26,3 +26,6 @@ export const stripeWebhook = async (req: any, res: Response) => {
     res.status(400).send(`Webhook error: ${err.message}`);
   }
 };
+
+
+
