@@ -6,7 +6,7 @@ import { verifyPaidBooking } from "../../middlewares/payment.middleware";
 const router = Router();
 
 // Tourist
-router.post("/", protect(["tourist"]), BookingController.createBooking);
+router.post("/", protect(["tourist"],), BookingController.createBooking);
 router.get("/my", protect(["tourist"]), BookingController.getMyBookings);
 
 // Guide
